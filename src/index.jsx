@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import './index.less'
-import Demo from './components/hookCom/Demo9.jsx'
+import Demo from './components/hookCom_memo/Demo2.jsx'
 import { ConfigProvider } from 'antd'
 import zhCN from 'antd/locale/zh_CN';
 const root = ReactDOM.createRoot(document.getElementById('root'));
