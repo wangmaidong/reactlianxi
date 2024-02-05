@@ -1,5 +1,8 @@
 import React from "react";
 import './Vote.less'
+import VoteMain from "./VoteMain";
+import VoteFooter from "./VoteFooter"; 
+import ThemeContext from "./ThemeContext.js";
 class Vote extends React.Component {
     state = {
         supNum: 1,
@@ -17,17 +20,24 @@ class Vote extends React.Component {
             })
         }
     }
-    f() { }
     render() {
         let { supNum, oppNum } = this.state
-        return <div className="vote-box">
-            <div className="header">
-                <h2 className="title">React是很棒的前端框架</h2>
-                <span className="num">{supNum + oppNum}</span>
+        return <ThemeContext.Provider
+        value = {{
+            supNum,
+            oppNum,
+            change: this.change
+        }}
+        >
+            <div className="vote-box">
+                <div className="header">
+                    <h2 className="title">React是很棒的前端框架</h2>
+                    <span className="num">{supNum + oppNum}</span>
+                </div>
+                <VoteMain/>
+                <VoteFooter/>
             </div>
-            <VoteMain supNum={supNum} oppNum={oppNum} />
-            <VoteFooter change={this.change} />
-        </div>
+        </ThemeContext.Provider>
     }
 }
 export default Vote
