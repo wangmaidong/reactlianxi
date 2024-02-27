@@ -5,15 +5,14 @@ import VoteMain from './VoteMain.jsx'
 import VoteFooter from './VoteFooter.jsx'
 function Vote() {
     let { store } = useContext(ThemeContext)
+    console.log(store)
     let { supNum, oppNum } = store.getState()
-    let [ num, setNum ] = useState(0)
+    let [ num, setNum] = useState(0)
     useEffect(() => {
-        let unsubscribe = store.subscribe(() => {
+       let unsubscribe =  store.subscribe(() => {
             setNum(num + 1)
         })
-        return () => {
-            unsubscribe()
-        }
+        return unsubscribe
     }, [num])
     return <div >
         <div className="vote-box">

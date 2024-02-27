@@ -16,9 +16,11 @@ import store from './store/index.js'
 root.render(
   <ConfigProvider locale={zhCN}>
     <ThemeContext.Provider
-      value={{
-        store
-      }}
+      value={
+        {
+          store: store
+        }
+      }
     >
       <Vote></Vote>
     </ThemeContext.Provider>

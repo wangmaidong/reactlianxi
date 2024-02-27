@@ -1,21 +1,24 @@
-import { createStore } from 'redux'
-
-const initial = {
-    supNum: 3,
+import { createStore } from "redux";
+import { clone } from '@/assets/utils.js'
+let initialState = {
+    supNum: 1,
     oppNum: 1
 }
 
-let reducer = function (state = initial, action) {
-    state = { ...state }
+const reducer = function reducer(state = initialState, action) {
+    state = clone(true, state)
     switch (action.type) {
         case 'sup':
-            state.supNum++
+            state.supNum++;
             break;
         case 'opp':
-            state.oppNum++
+            state.oppNum++;
+            break;
+        default:
             break;
     }
     return state
 }
-const store = createStore(reducer)
-export default store
+
+ const store = createStore(reducer)
+ export default store
