@@ -4,7 +4,7 @@ class VoteMain extends React.Component {
     static contextType = ThemeContext
     render() {
         let { store } = this.context
-        let { supNum , oppNum } = store.getState()
+        let { supNum , oppNum } = store.getState().vote
         let result = (supNum + oppNum) == 0 ? 0 : (supNum / (supNum + oppNum))
         let ratio = (result * 100).toFixed(2) + '%'
         return <div className="main">

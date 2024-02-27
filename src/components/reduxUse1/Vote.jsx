@@ -5,8 +5,8 @@ import VoteMain from './VoteMain.jsx'
 import VoteFooter from './VoteFooter.jsx'
 function Vote() {
     let { store } = useContext(ThemeContext)
-    console.log(store)
-    let { supNum, oppNum } = store.getState()
+    console.log(store.getState())
+    let { supNum, oppNum } = store.getState().vote
     let [ num, setNum] = useState(0)
     useEffect(() => {
        let unsubscribe =  store.subscribe(() => {
