@@ -1,10 +1,12 @@
 import React from "react";
 import ThemeContext from "../../ThemeContext";
+import { connect } from 'react-redux'
 class VoteMain extends React.Component {
     static contextType = ThemeContext
     render() {
-        let { store } = this.context
-        let { supNum, oppNum } = store.getState()
+        // let { store } = this.context
+        // let { supNum, oppNum } = store.getState().vote
+        let { supNum, oppNum } = this.props
         let result = (supNum + oppNum) == 0 ? 0 : (supNum / (supNum + oppNum))
         let ratio = (result * 100).toFixed(2) + '%'
         return <div className="main">
@@ -15,4 +17,6 @@ class VoteMain extends React.Component {
     }
 }
 
-export default VoteMain
+export default connect(state => {
+    return state.vote
+})(VoteMain) 

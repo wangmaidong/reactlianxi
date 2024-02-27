@@ -1,20 +1,24 @@
 import { Button } from "antd"
 import ThemeContext from "../../ThemeContext"
 import { useContext } from "react"
-function VoteFooter() {
-    let { store } = useContext(ThemeContext)
+import actions from "../../store/actions"
+import { connect } from 'react-redux'
+function VoteFooter(props) {
+    // let { store } = useContext(ThemeContext)
+    let { support, oppose } = props
     return <div className="footer">
-        <Button type="primary" onClick={() => {
-            store.dispatch({
-                type: 'sup'
-            })
-        }}>支持</Button>
-        <Button type="primary" danger onClick={() => {
-            store.dispatch({
-                type: 'opp'
-            })
-        }}>反对</Button>
+        <Button type="primary" onClick={support}>支持</Button>
+        <Button type="primary" danger onClick={oppose}>反对</Button>
     </div>
 }
 
-export default VoteFooter
+export default connect(null, dispatch => {
+    return {
+        support() {
+            dispatch(actions.vote.support())
+        },
+        oppose() {
+            dispatch(actions.vote.oppose())
+        }
+    }
+})(VoteFooter) 

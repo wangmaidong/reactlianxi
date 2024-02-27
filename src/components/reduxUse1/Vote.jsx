@@ -3,18 +3,20 @@ import { useContext, useState, useEffect } from 'react'
 import ThemeContext from '../../ThemeContext'
 import VoteMain from './VoteMain.jsx'
 import VoteFooter from './VoteFooter.jsx'
-function Vote() {
-    let { store } = useContext(ThemeContext)
-    let { supNum, oppNum } = store.getState()
-    let [ num, setNum ] = useState(0)
-    useEffect(() => {
-        let unsubscribe = store.subscribe(() => {
-            setNum(num + 1)
-        })
-        return () => {
-            unsubscribe()
-        }
-    }, [num])
+import { connect } from 'react-redux'
+function Vote(props) {
+    // let { store } = useContext(ThemeContext)
+    // let { supNum, oppNum } = store.getState().vote
+    // let [ num, setNum ] = useState(0)
+    // useEffect(() => {
+    //     let unsubscribe = store.subscribe(() => {
+    //         setNum(num + 1)
+    //     })
+    //     return () => {
+    //         unsubscribe()
+    //     }
+    // }, [num])
+    let { supNum, oppNum } = props
     return <div >
         <div className="vote-box">
             <div className="header">
@@ -27,4 +29,6 @@ function Vote() {
     </div>
 }
 
-export default Vote
+export default connect(state => {
+    return state.vote
+})(Vote)
