@@ -13,13 +13,4 @@ function VoteFooter(props) {
     </div>
 }
 
-export default connect(null, dispatch => {
-    return {
-        support() {
-            dispatch(actions.voteAction.support())
-        },
-        oppose() {
-            dispatch(actions.voteAction.oppose())
-        }
-    }
-})(VoteFooter) 
+export default connect(null, actions.voteAction)(VoteFooter) 
